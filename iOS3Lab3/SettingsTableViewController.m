@@ -13,13 +13,6 @@
 {
     NSString *word;
 }
-@property (weak, nonatomic) IBOutlet UITextField *wordTextField;
-@property (weak, nonatomic) IBOutlet UISwitch *rotateSwitch;
-@property (weak, nonatomic) IBOutlet UILabel *countLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *countStepper;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *caseSegControl;
-@property (weak, nonatomic) IBOutlet UIButton *dismissBtn;
-
 
 @end
 
@@ -46,7 +39,13 @@
     self.countLabel.text = @"00";
     self.wordTextField.delegate = self;
     
-    //[self.caseSegControl addTarget:self action: forControlEvents:UIControlEventValueChanged];
+    if (!self.settingsDict) {
+        self.settingsDict = [[NSMutableDictionary alloc] initWithCapacity:4];
+    } else {
+        [self restoreSettings];
+    }
+    
+    [self.caseSegControl addTarget:self action:@selector(changedCase:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,13 +131,29 @@
 
  */
 
+- (void)restoreSettings
+{
+    // update display of controls to match current settings
+    self.wordTextField.text = [self.settingsDict objectForKey:@"word"];
+    self.caseSegControl.selectedSegmentIndex = [[self.settingsDict objectForKey:@"case"] isEqualToString:@"upper"]?0:1;
+}
+
 - (IBAction)dismissViewController:(id)sender {
+    [self.delegate didChangeSettings:self.settingsDict];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (IBAction)changedCase:(id)sender
+// selector for segmented control
+- (void)changedCase:(id)sender
 {
-    
+    UISegmentedControl *control = (UISegmentedControl *)sender;
+    NSInteger index = [control selectedSegmentIndex];
+    if ([[[control titleForSegmentAtIndex:index] lowercaseString] isEqualToString:@"lowercase"]) {
+        [self.settingsDict setObject:@"lower" forKey:@"case"];
+    } else {
+        [self.settingsDict setObject:@"upper" forKey:@"case"];
+    }
+    NSLog(@"case set to %@", [self.settingsDict objectForKey:@"case"]);
 }
 
 #pragma mark UITextField Delegate methods
@@ -150,8 +165,8 @@
         [alert show];
         return NO;
     } else {
+        [self.settingsDict setObject:textField.text forKey:@"word"];
         [textField resignFirstResponder];
-        
         return YES;
     }
 }
