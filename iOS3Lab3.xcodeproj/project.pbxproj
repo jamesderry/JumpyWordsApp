@@ -614,6 +614,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS3Lab3/iOS3Lab3-Prefix.pch";
 				INFOPLIST_FILE = "iOS3Lab3/iOS3Lab3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -627,6 +628,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOS3Lab3/iOS3Lab3-Prefix.pch";
 				INFOPLIST_FILE = "iOS3Lab3/iOS3Lab3-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -693,6 +695,7 @@
 				D0442AF4183ACA280056D2A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D0442AF5183ACA280056D2A2 /* Build configuration list for PBXNativeTarget "iOS3Lab3Tests" */ = {
 			isa = XCConfigurationList;
@@ -701,6 +704,7 @@
 				D0442AF7183ACA280056D2A2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
