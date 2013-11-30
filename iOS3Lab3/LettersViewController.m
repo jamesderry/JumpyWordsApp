@@ -5,6 +5,7 @@
 //  Created by James Derry on 11/18/13.
 //  Copyright (c) 2013 James Derry. All rights reserved.
 //
+// Art created by Vicki Wenderlich.  http://www.vickiwenderlich.com
 
 #import "LettersViewController.h"
 
