@@ -109,15 +109,15 @@
     
     CGMutablePathRef curvedPath = CGPathCreateMutable();
     CGPathMoveToPoint(curvedPath, NULL, currentPosition.x, currentPosition.y);
-    
+    int sh = [[UIScreen mainScreen] bounds].size.height; //screen height
 
     //create arc path
-    CGPathAddCurveToPoint(curvedPath, NULL, arc4random() % 320, arc4random() % 568,
-                          arc4random() % 320, arc4random() % 568,
-                          arc4random() % 320, arc4random() % 568); // 320 and 568 refer to 4" iphone screen width and height
+    CGPathAddCurveToPoint(curvedPath, NULL, arc4random() % 320, arc4random() % sh,
+                          arc4random() % 320, arc4random() % sh,
+                          arc4random() % 320, arc4random() % sh); // 320 and 568 refer to 4" iphone screen width and height
     //create arc path
-    CGPathAddCurveToPoint(curvedPath, NULL, arc4random() % 320, arc4random() % 568,
-                          arc4random() % 320, arc4random() % 568,
+    CGPathAddCurveToPoint(curvedPath, NULL, arc4random() % 320, arc4random() % sh,
+                          arc4random() % 320, arc4random() % sh,
                           finalxposition, finalyposition);
     
     //create bezier curve
